@@ -1,0 +1,112 @@
+{
+  "orders": [
+    {
+      "id": "4956",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 1
+        },
+        {
+          "productId": 5,
+          "nombre": "Impresora",
+          "almacen": "B2",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 1
+        },
+        {
+          "productId": 8,
+          "nombre": "Cargador",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 1
+        }
+      ],
+      "status": "completado",
+      "createdAt": "2026-03-12T19:23:34.944Z"
+    },
+    {
+      "id": "6eae",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        },
+        {
+          "productId": 12,
+          "nombre": "Router",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        }
+      ],
+      "status": "cancelado",
+      "createdAt": "2026-03-13T02:06:16.028Z"
+    },
+    {
+      "id": "21e4",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        }
+      ],
+      "status": "cancelado",
+      "createdAt": "2026-03-13T02:09:01.901Z"
+    },
+    {
+      "id": "1207",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        }
+      ],
+      "status": "cancelado",
+      "createdAt": "2026-03-13T02:11:56.110Z"
+    },
+    {
+      "id": "0628",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        }
+      ],
+      "status": "pendiente",
+      "createdAt": "2026-03-13T02:13:44.813Z"
+    },
+    {
+      "id": "8d12",
+      "matricula": "TEST",
+      "items": [
+        {
+          "productId": 3,
+          "nombre": "Teclado",
+          "almacen": "A1",
+          "cantidadSolicitada": 1,
+          "cantidadSurtida": 0
+        }
+      ],
+      "status": "pendiente",
+      "createdAt": "2026-03-13T02:44:00.743Z"
+    }
+  ],
+  "products": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,86 @@
+<div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex">
+  <!-- SIDEBAR DESKTOP -->
+  <aside class="hidden lg:flex flex-col w-64 bg-white shadow-lg p-6 gap-4">
+    <h2 class="text-xl font-semibold text-slate-800 mb-6">
+      Orders<span class="text-blue-600">App</span>
+    </h2>
+
+    <button
+      class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+      (click)="navigate('home')"
+    >
+      🏠 Dashboard
+    </button>
+
+    <button
+      class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+      (click)="navigate('products')"
+    >
+      🔍 Productos
+    </button>
+
+    <button
+      class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+      (click)="navigate('orders')"
+    >
+      🛒 Pedidos
+    </button>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <div class="flex-1 flex flex-col">
+    <!-- TOPBAR -->
+    <header class="bg-white shadow-sm px-6 py-4 flex items-center gap-4">
+      <!-- HAMBURGER -->
+      <button class="lg:hidden text-xl" (click)="toggleMenu()">☰</button>
+
+      <span class="font-semibold text-slate-700"> Orders App </span>
+    </header>
+
+    <main class="flex-1 p-6">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+@if (menuOpen) {
+  <!-- OVERLAY -->
+  <div class="fixed inset-0 bg-black/40 z-40 lg:hidden" (click)="toggleMenu()"></div>
+
+  <!-- SIDEMENU -->
+  <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl p-6 z-50 lg:hidden flex flex-col">
+    <!-- HEADER -->
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold text-slate-800">
+        Orders<span class="text-blue-600">App</span>
+      </h2>
+
+      <!-- CLOSE BUTTON -->
+      <button class="text-xl text-slate-500 hover:text-slate-800" (click)="toggleMenu()">✕</button>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <button
+        class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+        (click)="navigate('home')"
+      >
+        🏠 Dashboard
+      </button>
+
+      <button
+        class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+        (click)="navigate('products')"
+      >
+        🔍 Productos
+      </button>
+
+      <button
+        class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"
+        (click)="navigate('orders')"
+      >
+        🛒 Pedidos
+      </button>
+    </div>
+  </aside>
+}

@@ -1,0 +1,149 @@
+<div class="max-w-5xl mx-auto p-6">
+  @if (order()) {
+    <!-- HEADER -->
+
+    <div class="mb-6">
+      <h1 class="text-2xl font-semibold text-slate-800">Pedido #{{ order().id }}</h1>
+
+      <p class="text-slate-500 text-sm mt-1">
+        {{ order().createdAt | date: 'short' }}
+      </p>
+    </div>
+
+    <!-- TABLA -->
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+      <table class="w-full">
+        <thead class="bg-blue-50 border-b border-gray-200">
+          <tr class="text-sm text-blue-900">
+            <th class="p-4 text-left">Producto</th>
+            <th class="p-4 text-center">Pedido</th>
+            <th class="p-4 text-center">Surtido</th>
+            <th class="p-4 text-center">Faltante</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of order().items; track item.productId) {
+            <tr class="border-b border-gray-100 hover:bg-slate-50">
+              <!-- PRODUCTO -->
+
+              <td class="p-4 font-medium text-slate-800">
+                {{ item.nombre }}
+              </td>
+
+              <!-- PEDIDO -->
+
+              <td class="p-4 text-center text-slate-600">
+                {{ item.cantidadSolicitada }}
+              </td>
+
+              <!-- SURTIDO -->
+
+              <td class="p-4 text-center">
+                <div class="flex justify-center">
+                  <div
+                    class="flex items-center border border-slate-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <button
+                      class="px-3 py-1 bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                      (click)="decrease(item)"
+                      [disabled]="isLocked()"
+                    >
+                      −
+                    </button>
+
+                    <span class="w-12 text-center font-medium">
+                      {{ item.cantidadSurtida }}
+                    </span>
+
+                    <button
+                      class="px-3 py-1 bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                      (click)="increase(item)"
+                      [disabled]="isLocked()"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </td>
+
+              <!-- FALTANTE -->
+
+              <td class="p-4 text-center font-medium">
+                <span
+                  [class]="
+                    item.cantidadSolicitada - item.cantidadSurtida > 0
+                      ? 'text-red-500'
+                      : 'text-green-600'
+                  "
+                >
+                  {{ item.cantidadSolicitada - item.cantidadSurtida }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BOTONES -->
+
+    <div class="flex justify-between items-center mt-6">
+      <button
+        class="px-4 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 disabled:opacity-40 disabled:cursor-not-allowed"
+        (click)="openCancelModal()"
+        [disabled]="isLocked()"
+      >
+        Cancelar pedido
+      </button>
+
+      <div class="flex gap-3">
+        <button
+          class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
+          (click)="finalizeOrder()"
+          [disabled]="isLocked()"
+        >
+          Finalizar surtido
+        </button>
+      </div>
+    </div>
+  }
+</div>
+
+@if (showCancelModal) {
+  <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6">
+      <!-- ICONO -->
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+          <span class="text-red-600 text-lg font-bold">!</span>
+        </div>
+
+        <h2 class="text-lg font-semibold text-slate-800">Cancelar pedido</h2>
+      </div>
+
+      <!-- TEXTO -->
+
+      <p class="text-slate-600 text-sm mb-6">
+        ¿Seguro que deseas cancelar este pedido? Esta acción no se puede deshacer.
+      </p>
+
+      <!-- BOTONES -->
+
+      <div class="flex justify-end gap-3">
+        <button class="px-4 py-2 rounded-lg border hover:bg-slate-50" (click)="closeCancelModal()">
+          Volver
+        </button>
+
+        <button
+          class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+          (click)="confirmCancel()"
+        >
+          Sí, cancelar pedido
+        </button>
+      </div>
+    </div>
+  </div>
+}
