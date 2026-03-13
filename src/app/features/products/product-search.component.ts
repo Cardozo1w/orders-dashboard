@@ -20,6 +20,10 @@ export class ProductSearchComponent {
   productService = inject(ProductService);
   orderService = inject(OrderService);
 
+   ngOnInit() {
+    this.productService.loadProducts();
+  }
+
   onSearch(event: any) {
     this.searchTerm = event.target.value;
     this.showDropdown = this.searchTerm.length > 0;

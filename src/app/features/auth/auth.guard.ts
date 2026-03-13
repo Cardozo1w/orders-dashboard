@@ -6,7 +6,8 @@ export const authGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (auth.isLoggedIn()) {
+  // Usar el chequeo con expiración (12h)
+  if (auth.isAuthenticated()) {
     return true;
   }
 

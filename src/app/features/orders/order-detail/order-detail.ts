@@ -4,6 +4,7 @@ import { OrderService } from '../order.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -17,6 +18,7 @@ export class OrderDetailComponent {
   router = inject(Router);
 
   http = inject(HttpClient);
+  auth = inject(AuthService);
 
   orderId = this.route.snapshot.paramMap.get('id');
 
@@ -41,6 +43,9 @@ export class OrderDetailComponent {
       })),
     };
   });
+
+  // Un técnico solo puede ver el detalle, no modificar.
+  isTecnico = computed(() => this.auth.isTecnico());
 
   increase(item: any) {
     if (item.cantidadSurtida < item.cantidadSolicitada) {
@@ -101,6 +106,12 @@ export class OrderDetailComponent {
   isLocked() {
     const status = this.order()?.status;
     const lockedStatuses = ['completado', 'cancelado', 'completado_con_faltantes'];
+
+    // Si es técnico, siempre está bloqueado (solo lectura)
+    if (this.isTecnico()) {
+      return true;
+    }
+
     return lockedStatuses.includes(status);
   }
 }

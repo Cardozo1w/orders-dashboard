@@ -1,0 +1,44 @@
+<div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex flex-col items-center justify-center p-8">
+    <div class="w-full max-w-4xl text-center mb-10">
+        <h1 class="text-3xl font-semibold text-slate-800 mb-2">Dashboard de pedidos</h1>
+        <p class="text-slate-500">Gestiona productos y pedidos desde un solo lugar</p>
+    </div>
+
+    <div class="w-full max-w-4xl grid md:grid-cols-2 gap-6">
+        <!-- BUSCADOR (solo almacenista) -->
+        <div class="bg-white rounded-xl shadow-lg p-8 cursor-pointer hover:bg-blue-50 transition flex flex-col items-center gap-4"
+            (click)="navigate('products')">
+            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-2xl">
+                🔍
+            </div>
+
+            <span class="text-lg font-medium text-slate-800"> Buscador de productos </span>
+
+            <span class="text-sm text-slate-500 text-center">
+                Busca productos y crea nuevos pedidos
+            </span>
+        </div>
+
+
+        @if (isAlmacenista()) {
+
+        <!-- PEDIDOS / MIS PEDIDOS -->
+        <div class="bg-white rounded-xl shadow-lg p-8 cursor-pointer hover:bg-blue-50 transition flex flex-col items-center gap-4"
+            (click)="navigate('orders')">
+            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-2xl">
+                🛒
+            </div>
+
+            <span class="text-lg font-medium text-slate-800">
+                {{ isAlmacenista() ? 'Pedidos' : 'Mis pedidos' }}
+            </span>
+
+            <span class="text-sm text-slate-500 text-center">
+                {{ isAlmacenista()
+                ? 'Consulta y administra todos los pedidos'
+                : 'Consulta el estado de tus pedidos' }}
+            </span>
+        </div>
+        }
+    </div>
+</div>

@@ -84,8 +84,11 @@
       />
     </div>
 
-    <!-- TABLA -->
-    <div class="w-full max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden">
+    <!-- TABLA (contenedor con scroll) -->
+    <div
+      class="w-full max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden"
+      style="max-height: 360px; overflow-y: auto"
+    >
       <table class="w-full">
         <thead class="bg-blue-50 border-b border-gray-200">
           <tr class="text-sm text-blue-900">
@@ -141,10 +144,11 @@
 
               <td class="p-4 text-center">
                 <button
-                  class="text-red-500 hover:text-red-600"
+                  class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-100"
                   (click)="removeItem(item.productId)"
+                  aria-label="Quitar producto"
                 >
-                  <lucide-icon name="trash" class="w-5 h-5"></lucide-icon>
+                  ✕
                 </button>
               </td>
             </tr>

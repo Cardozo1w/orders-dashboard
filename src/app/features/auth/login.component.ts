@@ -97,8 +97,12 @@ export class LoginComponent {
 
   onLogin(event: Event) {
     event.preventDefault();
-    this.error = !this.auth.login(this.usuario, this.contrasena);
-    if (!this.error) {
+    this.error = false;
+
+    const success = this.auth.login(this.usuario, this.contrasena);
+    this.error = !success;
+
+    if (success) {
       this.router.navigate(['/home']);
     }
   }
