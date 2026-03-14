@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   http = inject(HttpClient);
-  private api = 'http://localhost:3000/products';
+  private api = 'https://orders-server-mock.onrender.com/products';
 
     private readonly _products = signal<Product[]>([]);
 

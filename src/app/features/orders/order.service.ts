@@ -5,7 +5,7 @@ import { OrderItem } from './order-item.model';
 @Injectable({ providedIn: 'root' })
 export class OrderService {
   private http = inject(HttpClient);
-  private api = 'http://localhost:3000/orders';
+  private api = 'https://orders-server-mock.onrender.com/orders';
 
   private readonly _items = signal<OrderItem[]>([]);
   private readonly _orders = signal<any[]>([]);
